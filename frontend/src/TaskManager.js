@@ -157,20 +157,20 @@ const handleSearch=(e)=>{
      </div>
     </div>
     <div className='d-flex flex-column w-100'>
-        {
-         {Array.isArray(tasks) && tasks.map((item) => (
-            <div key={item._id} className='m-2 p-2 border bg-light w-100 rounded-3 d-flex justify-content-between align-items-center'>
-            <span className={item.isDone ? 'text-decoration-line-through':''}>{item.taskName}</span>
- 
-            <div className=''>
-             <button onClick={()=>handleCheckAndUncheck(item)} className='btn btn-success btn-sm me-2' type='button'><FaCheck/></button>
-             <button onClick={()=>setUpdateTask(item)} className='btn btn-primary btn-sm me-2 ' type='button'><FaPencilAlt/></button>
-            
-             <button  onClick={()=>handleDeleteTask(item._id)}  className='btn btn-danger btn-sm me-2' type='button'><FaTrash/></button>
-            </div>
-         </div>
-          ))
-        }
+{
+  Array.isArray(tasks) && tasks.map((item) => (
+    <div key={item._id} className='m-2 p-2 border bg-light w-100 rounded-3 d-flex justify-content-between align-items-center'>
+      <span className={item.isDone ? 'text-decoration-line-through' : ''}>{item.taskName}</span>
+
+      <div>
+        <button onClick={() => handleCheckAndUncheck(item)} className='btn btn-success btn-sm me-2' type='button'><FaCheck /></button>
+        <button onClick={() => setUpdateTask(item)} className='btn btn-primary btn-sm me-2' type='button'><FaPencilAlt /></button>
+        <button onClick={() => handleDeleteTask(item._id)} className='btn btn-danger btn-sm me-2' type='button'><FaTrash /></button>
+      </div>
+    </div>
+  ))
+}
+
     </div>
     <ToastContainer position='top-right' autoClose ={3000} hideProgressBar={false}/>
     </div>
