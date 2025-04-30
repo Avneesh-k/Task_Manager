@@ -18,6 +18,6 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use('/task',TaskRouter)
 
-app.listen(8080,(req,res)=>{
+app.listen(PORT,(req,res)=>{
     console.log(`Server is running on port number ${PORT}`)
 })
