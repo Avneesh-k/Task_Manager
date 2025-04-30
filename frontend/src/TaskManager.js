@@ -46,19 +46,23 @@ function TaskManager() {
         }
       
     }
-   const fetchAllTasks = async()=>{
-    try{
-        const{data}=
-        await GetAllTasks()
-        setTasks(data);
-        setCopyTasks(data);
-    }catch(err){
-        notify("Failed to Load All Task!")
+const fetchAllTasks = async () => {
+  try {
+    const response = await GetAllTasks();
+    
+    if (response?.success && Array.isArray(response.data)) {
+      setTasks(response.data);
+      setCopyTasks(response.data);
+    } else {
+      notify("Failed to Load All Tasks", 'error');
+      setTasks([]); // Prevent crash
     }
-   }
-    useEffect(()=>{
-       fetchAllTasks();
-    },[])
+  } catch (err) {
+    notify("Failed to Load All Tasks", 'error');
+    setTasks([]); // Prevent crash
+  }
+};
+
 
 const handleDeleteTask=async(id)=>{
     try{
