@@ -22,21 +22,15 @@ export const CreateTask = async(taskObj) =>{
 
 
 export const GetAllTasks = async () => {
-  const url = `${API_URL}/task`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-  };
   try {
-    const result = await fetch(url, options);
-    const data = await result.json();
-    return data;
+    const res = await fetch(`${API_URL}/task`);
+    const data = await res.json();
+    return data; // should return { success: true, data: [...] }
   } catch (err) {
-    return { success: false, message: "Fetch failed", data: [] };
+    return { success: false, data: [], message: "Failed to fetch tasks" };
   }
 };
+
 
 export const DeleteTaskById= async(id) =>{
     const url = `${API_URL}/task/${id}`;
