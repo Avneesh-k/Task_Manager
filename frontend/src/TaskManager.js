@@ -50,18 +50,20 @@ const fetchAllTasks = async () => {
   try {
     const response = await GetAllTasks();
     
-    if (response?.success && Array.isArray(response.data)) {
+    // Ensure the data exists and is an array
+    if (response && Array.isArray(response.data)) {
       setTasks(response.data);
       setCopyTasks(response.data);
     } else {
-      notify("Failed to Load All Tasks", 'error');
-      setTasks([]); // Prevent crash
+      notify("Failed to load tasks", "error");
+      setTasks([]); // Prevents map() error
     }
   } catch (err) {
-    notify("Failed to Load All Tasks", 'error');
-    setTasks([]); // Prevent crash
+    notify("Failed to load tasks", "error");
+    setTasks([]); // Prevents map() error on fetch failure
   }
 };
+
 
 
 const handleDeleteTask=async(id)=>{
@@ -156,7 +158,7 @@ const handleSearch=(e)=>{
     </div>
     <div className='d-flex flex-column w-100'>
         {
-          tasks.map((item)=>(
+         {Array.isArray(tasks) && tasks.map((item) => (
             <div key={item._id} className='m-2 p-2 border bg-light w-100 rounded-3 d-flex justify-content-between align-items-center'>
             <span className={item.isDone ? 'text-decoration-line-through':''}>{item.taskName}</span>
  
