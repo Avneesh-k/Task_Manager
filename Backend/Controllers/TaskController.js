@@ -21,8 +21,8 @@ const fetchAllTasks = async(req,res)=>{
             .json({message:'All Tasks',success:true,data})
     }
     catch(err){
-        console.log("Error creating task:", err.message); // 👈 log the error
-        res.status(500).json({message:'Failed to create task',success:false})
+        console.log("Error load task:", err.message); // 👈 log the error
+        res.status(500).json({message:'Failed to load task',success:false})
     }
 }
 
